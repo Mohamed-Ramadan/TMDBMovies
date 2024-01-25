@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22222" systemVersion="23D56" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
+    <entity name="MovieResponseEntity" representedClassName="MovieResponseEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="author" optional="YES" attributeType="String"/>
+        <attribute name="downloadUrl" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="url" optional="YES" attributeType="String"/>
+        <relationship name="moviesResponse" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MoviesResponseEntity" inverseName="movies" inverseEntity="MoviesResponseEntity"/>
+    </entity>
+    <entity name="MoviesRequestEntity" representedClassName="MoviesRequestEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="limit" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="page" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="response" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MoviesResponseEntity" inverseName="request" inverseEntity="MoviesResponseEntity"/>
+    </entity>
+    <entity name="MoviesResponseEntity" representedClassName="MoviesResponseEntity" syncable="YES" codeGenerationType="class">
+        <relationship name="movies" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="MovieResponseEntity" inverseName="moviesResponse" inverseEntity="MovieResponseEntity"/>
+        <relationship name="request" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MoviesRequestEntity" inverseName="response" inverseEntity="MoviesRequestEntity"/>
+    </entity>
+</model>
