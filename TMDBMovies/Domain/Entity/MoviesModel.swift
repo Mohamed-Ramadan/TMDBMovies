@@ -10,11 +10,18 @@ import Foundation
 struct MoviesModel {
     let page: Int
     let movies: [MovieModel]
+    let totalPages, totalResults: Int
 }
 
 // MARK: - MovieModel
 struct MovieModel {
-    let id, author: String
-    let url, downloadURL: String
+    let adult: Bool
+    let backdropPath: String
+    let id: Int
+    let originalLanguage, originalTitle, overview: String
+    let popularity: Double
+    let posterPath, releaseDate, title: String
+    let video: Bool
+    let voteCount: Int
 }
    

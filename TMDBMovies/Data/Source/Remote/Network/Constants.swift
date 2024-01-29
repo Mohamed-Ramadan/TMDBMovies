@@ -8,7 +8,7 @@
 import Foundation
 
 class Constants {
-    static let serverBaseURl = "https://picsum.photos/"
+    static let serverBaseURl = "https://api.themoviedb.org/"
 }
 
 enum HTTPMethod: String {

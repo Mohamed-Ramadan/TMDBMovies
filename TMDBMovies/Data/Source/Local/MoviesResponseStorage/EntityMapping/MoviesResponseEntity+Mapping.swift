@@ -10,16 +10,27 @@ import CoreData
 //MARK: - Mapping To Data Transfer Object
 extension MoviesResponseEntity {
     func toDTO() -> MoviesResponseDTO {
-        return movies?.map{($0 as! MovieResponseEntity).toDTO()} ?? []
+        return MoviesResponseDTO(page: 0,
+                                 results: movies?.map{($0 as! MovieResponseEntity).toDTO()} ?? [],
+                                 totalPages: 0,
+                                 totalResults: 0)
     }
 }
 
 extension MovieResponseEntity {
     func toDTO() -> MovieDTO {
-        return .init(id:id ?? "",
-                     author: author ?? "",
-                     url: url ?? "",
-                     downloadURL: downloadUrl ?? "")
+        return MovieDTO(adult: adult ,
+                        backdropPath: backdropPath ?? "",
+                        id: Int(id),
+                        originalLanguage: originalLanguage ?? "",
+                        originalTitle: originalTitle ?? "",
+                        overview: overview ?? "",
+                        popularity: popularity,
+                        posterPath: posterPath ?? "",
+                        releaseDate: releaseDate ?? "",
+                        title: title ?? "",
+                        video: video ,
+                        voteCount: Int(voteCount))
     }
 }
 
@@ -40,7 +51,7 @@ extension MoviesResponseDTO {
     func toEntity(in context: NSManagedObjectContext) -> MoviesResponseEntity {
         let entity: MoviesResponseEntity = .init(context: context)
         
-        self.forEach {
+        self.results.forEach {
             entity.addToMovies($0.toEntity(in: context))
         }
         
@@ -52,10 +63,18 @@ extension MovieDTO {
     func toEntity(in context: NSManagedObjectContext) -> MovieResponseEntity {
         let entity: MovieResponseEntity = .init(context: context)
         
-        entity.id = id
-        entity.author = author
-        entity.url = url
-        entity.downloadUrl = downloadURL
+        entity.adult = adult
+        entity.backdropPath = backdropPath
+        entity.id = Int16(id)
+        entity.originalLanguage = originalLanguage
+        entity.originalTitle = originalTitle
+        entity.overview = overview
+        entity.popularity = popularity
+        entity.posterPath = posterPath
+        entity.releaseDate = releaseDate
+        entity.title = title
+        entity.video = video
+        entity.voteCount = Int16(voteCount)
         
         return entity
     }
