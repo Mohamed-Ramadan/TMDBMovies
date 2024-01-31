@@ -8,7 +8,6 @@
 import Foundation
 
 // MARK: - MoviesResponseDTO
-//typealias MoviesResponseDTO = [MovieDTO]
 
 struct MoviesResponseDTO: Codable {
     let page: Int

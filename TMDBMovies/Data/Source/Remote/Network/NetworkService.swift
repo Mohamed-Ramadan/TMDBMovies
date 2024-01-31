@@ -21,9 +21,13 @@ class URLSessionNetworkService: NetworkService {
             return
         }
         
+        
+
+        
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = HTTPMethod.get.rawValue
-  
+        urlRequest.allHTTPHeaderFields = Constants.apiHeaders
+        
         let task = URLSession.shared.dataTask(with: urlRequest) { data, response, error in
             if let error = error {
                 completion(.failure(error))

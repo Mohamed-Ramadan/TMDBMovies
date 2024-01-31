@@ -8,82 +8,132 @@
 import UIKit
 
 class MoviesListTableViewController: UITableViewController {
+
+    static var identifier: String { String(describing: self) }
         
+    var nextPageLoadingSpinner: UIActivityIndicatorView?
+    var fullPageLoadingSpinner: UIActivityIndicatorView?
+    
+    var viewModel: MoviesListViewModel!
+    private lazy var moviesUseCase: MoviesUseCase = {
+        let moviesRepository: MoviesRepository = DefaultMoviesRepositoryImplementer()
+        return DefaultMoviesUseCase(MoviesRepository: moviesRepository)
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        // Do any additional setup after loading the view.
+        setupTableView()
+        setupUI()
+        bindViewModel()
+        loadData()
+    }
+    
+    //MARK: - Private Methods
+    private func loadData() {
+        self.viewModel.update()
+    }
+    
+    private func bindViewModel() {
+        self.viewModel = MoviesListViewModel(MoviesUseCase: moviesUseCase)
+         
+        self.viewModel.moviesCompletionHandler = {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+        
+        self.viewModel.loadingCompletionHandler = { [weak self] in
+            guard let self = self else {
+                return
+            }
+             
+            self.updateLoading($0)
+        }
+        
+        self.viewModel.error = { errorMsg in
+            self.showAlert(with: errorMsg)
+        }
+    }
+     
+    private func updateLoading(_ loading: MoviesListViewModelLoading) {
+        DispatchQueue.main.async {
+            switch loading {
+                case .fullScreen: self.handleFullPageLoading(isAnimating: true)
+                case .nextPage, .none: self.handleFullPageLoading(isAnimating: false)
+            }
+            
+            self.updateTableViewFooterLoading(loading)
+        }
+    }
+    
+    private func handleFullPageLoading(isAnimating: Bool) {
+        if isAnimating {
+            fullPageLoadingSpinner?.removeFromSuperview()
+            fullPageLoadingSpinner = self.makeActivityIndicator(size: .init(width: self.view.frame.width, height: 44))
+            self.view.addSubview(fullPageLoadingSpinner!)
+            fullPageLoadingSpinner?.center = self.view.center
+            fullPageLoadingSpinner?.startAnimating()
+        } else {
+            fullPageLoadingSpinner?.removeFromSuperview()
+        }
+    }
+    
+    func updateTableViewFooterLoading(_ loading: MoviesListViewModelLoading) {
+        switch loading {
+        case .nextPage:
+            nextPageLoadingSpinner?.removeFromSuperview()
+            nextPageLoadingSpinner = tableView.makeActivityIndicator(size: .init(width: tableView.frame.width, height: 44))
+            tableView.tableFooterView = nextPageLoadingSpinner
+            case .fullScreen, .none:
+                tableView.tableFooterView = nil
+        }
+    }
+    
+    private func setupUI () {
+        self.title = "Movies"
+    }
+    
+    private func setupTableView() {
+        self.tableView.register(MovieListItemTableViewCell.nib(), forCellReuseIdentifier: MovieListItemTableViewCell.identifier)
+        self.tableView.separatorStyle = .none
     }
 
-    // MARK: - Table view data source
+}
 
+
+extension MoviesListTableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return self.viewModel.pages.moviesSections.count
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return self.viewModel.pages.moviesSections[section].count
     }
-
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: MovieListItemTableViewCell.identifier, for: indexPath) as? MovieListItemTableViewCell else {
+            return UITableViewCell()
+        }
+        
+        cell.selectionStyle = .none
+        cell.configureCellWithMovie(self.viewModel.getViewModel(for: indexPath))
         return cell
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 175
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //let selectedMovie = self.viewModel.didSelectItem(at: indexPath)
+    }
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.section == self.viewModel.pages.moviesSections.count-1 {
+            self.viewModel.didLoadNextPage()
+        }
+    }
 }
+

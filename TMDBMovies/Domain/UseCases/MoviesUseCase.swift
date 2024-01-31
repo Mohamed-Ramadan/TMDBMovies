@@ -15,15 +15,15 @@ protocol MoviesUseCase {
 
 final class DefaultMoviesUseCase: MoviesUseCase {
     
-   private let MoviesRepository: MoviesRepository
+   private let moviesRepository: MoviesRepository
    
    init(MoviesRepository: MoviesRepository) {
-       self.MoviesRepository = MoviesRepository
+       self.moviesRepository = MoviesRepository
    }
    
    func fetchMovies(requestValue: MoviesRequestValue, cached: @escaping (MoviesModel) -> Void, completion: @escaping (Result<MoviesModel, Error>) -> Void) {
        
-       return self.MoviesRepository.getMovies(limit: requestValue.limit, page: requestValue.page,
+       return self.moviesRepository.getMovies(limit: requestValue.limit, page: requestValue.page,
                                               cached: cached) { (result) in
            
            switch result {
@@ -31,7 +31,7 @@ final class DefaultMoviesUseCase: MoviesUseCase {
                    
                    // only cache first 20 Movies
                    if (requestValue.page * requestValue.limit) <= 20 {
-                       self.MoviesRepository.saveMovies(limit: requestValue.limit, page: requestValue.page,
+                       self.moviesRepository.saveMovies(limit: requestValue.limit, page: requestValue.page,
                                                         MoviesDTO: model)
                    }
                    

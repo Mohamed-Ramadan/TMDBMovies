@@ -65,7 +65,7 @@ extension MovieDTO {
         
         entity.adult = adult
         entity.backdropPath = backdropPath
-        entity.id = Int16(id)
+        entity.id = Int32(id)
         entity.originalLanguage = originalLanguage
         entity.originalTitle = originalTitle
         entity.overview = overview
@@ -74,7 +74,7 @@ extension MovieDTO {
         entity.releaseDate = releaseDate
         entity.title = title
         entity.video = video
-        entity.voteCount = Int16(voteCount)
+        entity.voteCount = Int32(voteCount)
         
         return entity
     }

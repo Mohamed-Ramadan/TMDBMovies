@@ -3,7 +3,7 @@
     <entity name="MovieResponseEntity" representedClassName="MovieResponseEntity" syncable="YES" codeGenerationType="class">
         <attribute name="adult" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="backdropPath" optional="YES" attributeType="String"/>
-        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="originalLanguage" optional="YES" attributeType="String"/>
         <attribute name="originalTitle" optional="YES" attributeType="String"/>
         <attribute name="overview" optional="YES" attributeType="String"/>
@@ -12,7 +12,7 @@
         <attribute name="releaseDate" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="video" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="voteCount" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="voteCount" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="moviesResponse" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MoviesResponseEntity" inverseName="movies" inverseEntity="MoviesResponseEntity"/>
     </entity>
     <entity name="MoviesRequestEntity" representedClassName="MoviesRequestEntity" syncable="YES" codeGenerationType="class">
