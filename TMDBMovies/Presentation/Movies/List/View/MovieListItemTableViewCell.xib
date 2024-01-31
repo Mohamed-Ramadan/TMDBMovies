@@ -25,7 +25,7 @@
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="0.51357981699999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="wGO-yz-X9h">
-                                <rect key="frame" x="204.66666666666666" y="0.0" width="341.33333333333337" height="45.666666666666664"/>
+                                <rect key="frame" x="204.66666666666666" y="0.0" width="341.33333333333337" height="43.333333333333336"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BKS-o1-WTV">
                                         <rect key="frame" x="0.0" y="0.0" width="341.33333333333331" height="20.333333333333332"/>
@@ -34,8 +34,8 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xsd-Ka-W7G">
-                                        <rect key="frame" x="0.0" y="25.333333333333336" width="341.33333333333331" height="20.333333333333336"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <rect key="frame" x="0.0" y="25.333333333333329" width="341.33333333333331" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>

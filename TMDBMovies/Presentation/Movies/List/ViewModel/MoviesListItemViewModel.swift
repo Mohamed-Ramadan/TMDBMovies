@@ -28,7 +28,7 @@ extension MoviesListItemViewModel {
         self.overview = movie.overview
         self.popularity = movie.popularity
         self.posterPath = movie.posterPath
-        self.releaseDate = movie.releaseDate
+        self.releaseDate = movie.releaseDate.getYear() ?? ""
         self.title = movie.title
         self.video = movie.video
         self.voteCount = movie.voteCount
