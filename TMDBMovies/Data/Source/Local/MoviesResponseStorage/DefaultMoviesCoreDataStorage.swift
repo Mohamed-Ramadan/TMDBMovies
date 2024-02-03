@@ -19,7 +19,7 @@ final class DefaultMoviesCoreDataStorage {
     private func fetchRequest(for requestDto: MoviesRequestDTO) -> NSFetchRequest<MoviesRequestEntity> {
         let request: NSFetchRequest = MoviesRequestEntity.fetchRequest()
         request.predicate = NSPredicate(format: "%K = %d AND %K = %d",
-                                        #keyPath(MoviesRequestEntity.limit), requestDto.limit,
+                                        #keyPath(MoviesRequestEntity.keyword), requestDto.keyword,
                                         #keyPath(MoviesRequestEntity.page), requestDto.page)
         return request
     }

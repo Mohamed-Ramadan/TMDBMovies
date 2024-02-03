@@ -13,7 +13,8 @@ class MoviesListTableViewController: UITableViewController {
         
     var nextPageLoadingSpinner: UIActivityIndicatorView?
     var fullPageLoadingSpinner: UIActivityIndicatorView?
-    
+    lazy var searchBar:UISearchBar = UISearchBar()
+
     var viewModel: MoviesListViewModel!
     private lazy var moviesUseCase: MoviesUseCase = {
         let moviesRepository: MoviesRepository = DefaultMoviesRepositoryImplementer()
@@ -27,6 +28,11 @@ class MoviesListTableViewController: UITableViewController {
         setupTableView()
         setupUI()
         bindViewModel()
+    }
+    
+    override func viewIsAppearing(_ animated: Bool) {
+        super.viewIsAppearing(animated)
+        
         loadData()
     }
     
@@ -93,23 +99,35 @@ class MoviesListTableViewController: UITableViewController {
     
     private func setupUI () {
         self.title = "Movies"
+        
+        searchBar.searchBarStyle = UISearchBar.Style.default
+        searchBar.placeholder = " Search..."
+        searchBar.sizeToFit()
+        searchBar.isTranslucent = false
+        searchBar.backgroundImage = UIImage()
+        searchBar.delegate = self
+        navigationItem.titleView = searchBar
+        
     }
     
     private func setupTableView() {
         self.tableView.register(MovieListItemTableViewCell.nib(), forCellReuseIdentifier: MovieListItemTableViewCell.identifier)
         self.tableView.separatorStyle = .none
     }
+    
+    
 
 }
 
+extension MoviesListTableViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange textSearched: String) {
+        viewModel.didSearchChanged(searchKeywork: textSearched)
+    }
+}
 
 extension MoviesListTableViewController {
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return self.viewModel.pages.moviesSections.count
-    }
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.viewModel.pages.moviesSections[section].count
+        return self.viewModel.pages.movies.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -131,7 +149,7 @@ extension MoviesListTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.section == self.viewModel.pages.moviesSections.count-1 {
+        if indexPath.row == self.viewModel.pages.movies.count-1 {
             self.viewModel.didLoadNextPage()
         }
     }

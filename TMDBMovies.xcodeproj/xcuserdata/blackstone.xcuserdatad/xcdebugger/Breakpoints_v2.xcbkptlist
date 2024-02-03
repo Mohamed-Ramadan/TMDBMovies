@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "AEA4CFDB-BE66-4F84-8F7E-9CA3771993D2"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5AC622EB-BA59-4CF1-97C3-646F2C8D4C48"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TMDBMovies/Presentation/Movies/List/ViewModel/MoviesListViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
+            landmarkName = "appendPage(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "82047650-C106-4C1C-907E-6F33FBA4214F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TMDBMovies/Domain/UseCases/MoviesUseCase.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "fetchMovies(requestValue:cached:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "82047650-C106-4C1C-907E-6F33FBA4214F - a13a23d6924f4cb4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;TMDBMovies.MoviesResponseDTO, Swift.Error&gt;) -&gt; () in TMDBMovies.DefaultMoviesUseCase.fetchMovies(requestValue: TMDBMovies.MoviesRequestValue, cached: (TMDBMovies.MoviesModel) -&gt; (), completion: (Swift.Result&lt;TMDBMovies.MoviesModel, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "TMDBMovies"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/blackstone/Desktop/projects/TMDBMovies/TMDBMovies/Domain/UseCases/MoviesUseCase.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "148">
+               </Location>
+               <Location
+                  uuid = "82047650-C106-4C1C-907E-6F33FBA4214F - a13a23d6924f4cb4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;TMDBMovies.MoviesResponseDTO, Swift.Error&gt;) -&gt; () in TMDBMovies.DefaultMoviesUseCase.fetchMovies(requestValue: TMDBMovies.MoviesRequestValue, cached: (TMDBMovies.MoviesModel) -&gt; (), completion: (Swift.Result&lt;TMDBMovies.MoviesModel, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "TMDBMovies"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/blackstone/Desktop/projects/TMDBMovies/TMDBMovies/Domain/UseCases/MoviesUseCase.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "164">
+               </Location>
+               <Location
+                  uuid = "82047650-C106-4C1C-907E-6F33FBA4214F - a13a23d6924f4cb4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;TMDBMovies.MoviesResponseDTO, Swift.Error&gt;) -&gt; () in TMDBMovies.DefaultMoviesUseCase.fetchMovies(requestValue: TMDBMovies.MoviesRequestValue, cached: (TMDBMovies.MoviesModel) -&gt; (), completion: (Swift.Result&lt;TMDBMovies.MoviesModel, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "TMDBMovies"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/blackstone/Desktop/projects/TMDBMovies/TMDBMovies/Domain/UseCases/MoviesUseCase.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "528">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3439B5AE-3FEA-4D5D-AB60-EF4B3E8CF9AE"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TMDBMovies/Presentation/Movies/List/ViewModel/MoviesListViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
+            landmarkName = "didLoadNextPage()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "3439B5AE-3FEA-4D5D-AB60-EF4B3E8CF9AE - 9dc27f43388f4f8a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TMDBMovies.MoviesListViewModel.didSelectItem(at: Foundation.IndexPath) -&gt; TMDBMovies.MovieModel"
+                  moduleName = "TMDBMovies"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/blackstone/Desktop/projects/TMDBMovies/TMDBMovies/Presentation/Movies/List/ViewModel/MoviesListViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "109"
+                  endingLineNumber = "109"
+                  offsetFromSymbolStart = "132">
+               </Location>
+               <Location
+                  uuid = "3439B5AE-3FEA-4D5D-AB60-EF4B3E8CF9AE - 295159fd45d0add5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TMDBMovies.MoviesListViewModel.didLoadNextPage() -&gt; ()"
+                  moduleName = "TMDBMovies"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/blackstone/Desktop/projects/TMDBMovies/TMDBMovies/Presentation/Movies/List/ViewModel/MoviesListViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "109"
+                  endingLineNumber = "109"
+                  offsetFromSymbolStart = "60">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EC6663DB-9053-4280-B7F1-40EDC6310772"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TMDBMovies/Presentation/Movies/List/ViewModel/MoviesListViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
+            landmarkName = "load(loading:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "EC6663DB-9053-4280-B7F1-40EDC6310772 - 2e1754a9800c441d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TMDBMovies.MoviesListViewModel.load(loading: TMDBMovies.MoviesListViewModelLoading) -&gt; ()"
+                  moduleName = "TMDBMovies"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/blackstone/Desktop/projects/TMDBMovies/TMDBMovies/Presentation/Movies/List/ViewModel/MoviesListViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "70"
+                  endingLineNumber = "70"
+                  offsetFromSymbolStart = "160">
+               </Location>
+               <Location
+                  uuid = "EC6663DB-9053-4280-B7F1-40EDC6310772 - d6afbaa009d4fbfc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;TMDBMovies.MoviesModel, Swift.Error&gt;) -&gt; () in TMDBMovies.MoviesListViewModel.load(loading: TMDBMovies.MoviesListViewModelLoading) -&gt; ()"
+                  moduleName = "TMDBMovies"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/blackstone/Desktop/projects/TMDBMovies/TMDBMovies/Presentation/Movies/List/ViewModel/MoviesListViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "70"
+                  endingLineNumber = "70"
+                  offsetFromSymbolStart = "80">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

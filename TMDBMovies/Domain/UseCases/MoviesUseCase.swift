@@ -23,17 +23,14 @@ final class DefaultMoviesUseCase: MoviesUseCase {
    
    func fetchMovies(requestValue: MoviesRequestValue, cached: @escaping (MoviesModel) -> Void, completion: @escaping (Result<MoviesModel, Error>) -> Void) {
        
-       return self.moviesRepository.getMovies(limit: requestValue.limit, page: requestValue.page,
+       return self.moviesRepository.getMovies(keyword: requestValue.keyword, page: requestValue.page,
                                               cached: cached) { (result) in
            
            switch result {
                case .success(let model):
                    
-                   // only cache first 20 Movies
-                   if (requestValue.page * requestValue.limit) <= 20 {
-                       self.moviesRepository.saveMovies(limit: requestValue.limit, page: requestValue.page,
-                                                        MoviesDTO: model)
-                   }
+               self.moviesRepository.saveMovies(keyword: requestValue.keyword, page: requestValue.page,
+                                                MoviesDTO: model)
                    
                    completion(.success(model.toDomain(page: requestValue.page)))
                    
@@ -46,5 +43,5 @@ final class DefaultMoviesUseCase: MoviesUseCase {
 
 struct MoviesRequestValue {
    let page: Int
-   let limit: Int
+   let keyword: String
 }

@@ -41,7 +41,7 @@ extension MoviesRequestDTO {
         let entity: MoviesRequestEntity = .init(context: context)
         
         entity.page = Int32(page)
-        entity.limit = Int32(limit)
+        entity.keyword = keyword
         
         return entity
     }

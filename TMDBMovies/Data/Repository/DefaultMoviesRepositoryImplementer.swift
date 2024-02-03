@@ -17,8 +17,8 @@ final class DefaultMoviesRepositoryImplementer: MoviesRepository {
         self.networkService = networkService
     }
     
-    func getMovies(limit: Int, page: Int, cached: @escaping (MoviesModel) -> Void, completion: @escaping (Result<MoviesResponseDTO, Error>) -> Void) {
-        let requestDTO = MoviesRequestDTO(page: page, limit: limit)
+    func getMovies(keyword: String, page: Int, cached: @escaping (MoviesModel) -> Void, completion: @escaping (Result<MoviesResponseDTO, Error>) -> Void) {
+        let requestDTO = MoviesRequestDTO(page: page, keyword: keyword)
         
         // load Movies from cache storage
         MoviesStorage.getResponse(for: requestDTO) { result in
@@ -31,8 +31,8 @@ final class DefaultMoviesRepositoryImplementer: MoviesRepository {
         networkService.getMovies(request: requestDTO, completion: completion)
     }
     
-    func saveMovies(limit: Int, page: Int, MoviesDTO: MoviesResponseDTO) {
-        let requestDTO = MoviesRequestDTO(page: page, limit: limit)
+    func saveMovies(keyword: String, page: Int, MoviesDTO: MoviesResponseDTO) {
+        let requestDTO = MoviesRequestDTO(page: page, keyword: keyword)
         MoviesStorage.save(responseDTO: MoviesDTO, for: requestDTO)
     }
 }

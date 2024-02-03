@@ -16,7 +16,7 @@
         <relationship name="moviesResponse" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MoviesResponseEntity" inverseName="movies" inverseEntity="MoviesResponseEntity"/>
     </entity>
     <entity name="MoviesRequestEntity" representedClassName="MoviesRequestEntity" syncable="YES" codeGenerationType="class">
-        <attribute name="limit" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="keyword" optional="YES" attributeType="String"/>
         <attribute name="page" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="response" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MoviesResponseEntity" inverseName="request" inverseEntity="MoviesResponseEntity"/>
     </entity>

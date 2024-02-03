@@ -9,5 +9,5 @@ import Foundation
 
 struct MoviesRequestDTO {
     let page: Int
-    let limit: Int
+    let keyword: String
 }

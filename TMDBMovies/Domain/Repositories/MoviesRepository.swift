@@ -9,11 +9,11 @@ import Foundation
 
 protocol MoviesRepository {
      
-    func getMovies(limit: Int, page: Int,
+    func getMovies(keyword: String, page: Int,
                    cached: @escaping (MoviesModel) -> Void,
                    completion: @escaping (Result<MoviesResponseDTO, Error>) -> Void)
     
-    func saveMovies(limit: Int, page: Int,
+    func saveMovies(keyword: String, page: Int,
                     MoviesDTO: MoviesResponseDTO)
 }
 

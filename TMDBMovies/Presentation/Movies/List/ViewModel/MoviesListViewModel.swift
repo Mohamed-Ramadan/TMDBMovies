@@ -17,6 +17,7 @@ protocol MoviesListViewModelInput {
     func viewDidLoad()
     func didLoadNextPage()
     func didSelectItem(at indexPath: IndexPath) -> MovieModel
+    func didSearchChanged(searchKeywork: String)
 }
 
 
@@ -29,7 +30,8 @@ class MoviesListViewModel: MoviesListViewModelInput {
         }
     }
     
-    private(set) var totalMovies = 1
+    private(set) var searchKeyword: String = ""
+    private(set) var totalPages = 1
     private(set) var pageSize = 10
     private(set) var currentPage = 0
     var nextPage: Int { currentPage + 1 }
@@ -53,6 +55,7 @@ class MoviesListViewModel: MoviesListViewModelInput {
     private func appendPage(_ page: MoviesModel) {
         loading = .none
         currentPage = page.page
+        totalPages = page.totalPages
         
         pages = pages
             .filter { $0.page != page.page }
@@ -62,7 +65,7 @@ class MoviesListViewModel: MoviesListViewModelInput {
     private func load(loading: MoviesListViewModelLoading) {
         
         self.loading = loading
-        let request = MoviesRequestValue(page: nextPage, limit: pageSize)
+        let request = MoviesRequestValue(page: nextPage, keyword: searchKeyword.lowercased())
         
         MoviesUseCase.fetchMovies(requestValue: request, cached: appendPage) { (result) in
             self.loading = .none
@@ -78,7 +81,7 @@ class MoviesListViewModel: MoviesListViewModelInput {
    
     private func resetPages() {
         currentPage = 0
-        totalMovies = 1
+        totalPages = 0
         pages.removeAll()
     }
     
@@ -89,7 +92,7 @@ class MoviesListViewModel: MoviesListViewModelInput {
     }
     
     func getViewModel(for indexPath: IndexPath) -> MoviesListItemViewModel {
-        return MoviesListItemViewModel.init(movie: self.pages.moviesSections[indexPath.section][indexPath.row])
+        return MoviesListItemViewModel.init(movie: self.pages.movies[indexPath.row])
     }
 }
 
@@ -99,15 +102,22 @@ extension MoviesListViewModel {
     func viewDidLoad() {}
      
     func didSelectItem(at indexPath: IndexPath) -> MovieModel {
-        return pages.moviesSections[indexPath.section][indexPath.row]
+        return pages.movies[indexPath.row]
     }
     
     func didLoadNextPage() {
-        guard self.loading == .none else {
+        guard self.loading == .none, currentPage <= totalPages else {
             return
         }
         
         load(loading: .nextPage)
+    }
+    
+    func didSearchChanged(searchKeywork: String) {
+        resetPages()
+        self.searchKeyword = searchKeywork
+        
+        load(loading: .fullScreen)
     }
 }
 
@@ -115,14 +125,4 @@ extension MoviesListViewModel {
 
 extension Array where Element == MoviesModel {
     var movies: [MovieModel] { flatMap { $0.movies } }
-    var moviesSections: [[MovieModel]] {movies.chunked(into: 5)}
-}
-
-
-extension Array {
-    func chunked(into size: Int) -> [[Element]] {
-        return stride(from: 0, to: count, by: size).map {
-            Array(self[$0 ..< Swift.min($0 + size, count)])
-        }
-    }
 }

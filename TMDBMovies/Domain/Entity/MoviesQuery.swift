@@ -9,5 +9,5 @@ import Foundation
 
 struct MoviesQuery {
     let page: Int
-    let limit: Int
+    let keyword: String
 }
